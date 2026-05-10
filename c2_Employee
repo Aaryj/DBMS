@@ -1,0 +1,46 @@
+use company
+
+db.employees.insertMany([
+{
+    emp_id: 1,
+    name: "Amit",
+    department: "HR",
+    salary: 25000
+},
+{
+    emp_id: 2,
+    name: "Rahul",
+    department: "IT",
+    salary: 40000
+},
+{
+    emp_id: 3,
+    name: "Sneha",
+    department: "Finance",
+    salary: 35000
+}
+])
+
+db.employees.find({
+    $and: [
+        {department: "IT"},
+        {salary: {$gt: 30000}}
+    ]
+})
+
+db.employees.find({
+    $or: [
+        {department: "HR"},
+        {salary: {$lt: 30000}}
+    ]
+})
+
+db.employees.updateOne(
+    {emp_id: 1},
+    {$set: {salary: 30000}}
+)
+
+db.employees.deleteOne(
+    {emp_id: 3}
+)
+  
