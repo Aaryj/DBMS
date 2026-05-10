@@ -1,0 +1,45 @@
+use college
+
+db.students.insertMany([
+{
+    roll_no: 1,
+    name: "Raj",
+    marks: 80,
+    city: "Pune"
+},
+{
+    roll_no: 2,
+    name: "Priya",
+    marks: 70,
+    city: "Mumbai"
+},
+{
+    roll_no: 3,
+    name: "Neha",
+    marks: 90,
+    city: "Pune"
+}
+])
+
+  db.students.find({
+    $and: [
+        {city: "Pune"},
+        {marks: {$gt: 75}}
+    ]
+})
+
+db.students.find({
+    $or: [
+        {city: "Mumbai"},
+        {marks: {$lt: 75}}
+    ]
+})
+
+db.students.updateOne(
+    {roll_no: 2},
+    {$set: {marks: 85}}
+)
+
+  db.students.deleteOne(
+    {roll_no: 3}
+)
